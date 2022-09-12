@@ -1,10 +1,14 @@
-<div class="flex flex-row">
-  <div class="w-48">HALLO TITEL</div>
-  <mat-tab-group>
-    <mat-tab label="Kartenansicht">Test</mat-tab>
-    <mat-tab label="Listenansicht">Test 2</mat-tab>
-    <mat-tab label="Information">Test 2</mat-tab>
-    <mat-tab label="Bauwerk erfassen">Test 2</mat-tab>
-    <mat-tab label="Kontakt">Test 2</mat-tab>
-  </mat-tab-group>
+<div class="flex flex-row justify-between h-10">
+  <div class="p-6">HALLO TITEL</div>
+  <div class="space-x-8 p-6">
+    <a routerLink="/map">Kartenansicht</a>
+    <a routerLink="/list">Listenansicht</a>
+    <a routerLink="/info">Informationen</a>
+    <a routerLink="/capture-building">Bauwerk erfassen</a>
+    <a routerLink="/contact">Kontakt</a>
+  </div>
 </div>
+<div class="mt-4">
+  <router-outlet></router-outlet>
+</div>
+

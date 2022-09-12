@@ -1,0 +1,5 @@
+<div *ngIf="apiLoaded$ | async">
+  <google-map class="w-full h-full" [options]="options"></google-map>
+</div>
+TEST
+{{apiLoaded$ | async}}
