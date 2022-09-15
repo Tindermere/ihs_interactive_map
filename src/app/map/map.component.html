@@ -1,5 +1,37 @@
 <div *ngIf="apiLoaded$ | async">
-  <google-map class="w-full h-full" [options]="options"></google-map>
+  <div class="map-container" #map>
+    <div class="action-bar flex flex-row justify-between">
+      <div class="filter">
+        <mat-form-field appearance="legacy" class="w-full">
+          <mat-label>Filter</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let category of categories" [value]="category.value">
+              <div class="flex flex-row justify-between">
+                <span>{{category.value}}</span>
+                <div class="category-color"></div>
+              </div>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <form class="search-field">
+        <mat-form-field class="w-full" appearance="outline">
+          <mat-label>Number</mat-label>
+          <input type="text"
+                 placeholder="Pick one"
+                 aria-label="Number"
+                 matInput
+                 [formControl]="myControl"
+                 [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </form>
+    </div>
+    <google-map [options]="googleMapsOptions"
+                [width]="'100vw'" [height]="map.offsetHeight"></google-map>
+  </div>
 </div>
-TEST
-{{apiLoaded$ | async}}
