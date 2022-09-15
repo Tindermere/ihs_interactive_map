@@ -18,6 +18,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -42,9 +43,14 @@ import { MatInputModule } from '@angular/material/input';
     MatAutocompleteModule,
     MatInputModule,
     ReactiveFormsModule,
+    MatIconModule,
   ],
-  providers: [],
+  providers: [MatIconRegistry],
   bootstrap: [AppComponent],
   exports: [MapComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(public matIconRegistry: MatIconRegistry) {
+    matIconRegistry.registerFontClassAlias('fontawesome', 'fa');
+  }
+}

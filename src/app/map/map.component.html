@@ -2,9 +2,8 @@
   <div class="map-container" #map>
     <div class="action-bar flex flex-row justify-between">
       <div class="filter">
-        <mat-form-field appearance="legacy" class="w-full">
-          <mat-label>Filter</mat-label>
-          <mat-select>
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-select placeholder="Kategorien">
             <mat-option *ngFor="let category of categories" [value]="category.value">
               <div class="flex flex-row justify-between">
                 <span>{{category.value}}</span>
@@ -16,10 +15,8 @@
       </div>
       <form class="search-field">
         <mat-form-field class="w-full" appearance="outline">
-          <mat-label>Number</mat-label>
           <input type="text"
-                 placeholder="Pick one"
-                 aria-label="Number"
+                 placeholder="Suche nach Region, Bauwerk, Jahr, ..."
                  matInput
                  [formControl]="myControl"
                  [matAutocomplete]="auto">
@@ -28,6 +25,7 @@
               {{option}}
             </mat-option>
           </mat-autocomplete>
+          <mat-icon fontSet="fa" fontIcon="fa-magnifying-glass" matPrefix></mat-icon>
         </mat-form-field>
       </form>
     </div>

@@ -9,8 +9,6 @@
   .filter {
     margin-left: 50px;
     width: 250px;
-    background-color: rgb(250, 250, 250);
-    padding: 10px 15px 5px 15px;
     border-radius: 5px;
 
     .category-color {
@@ -22,13 +20,16 @@
   }
 
   .search-field {
-    background-color: rgb(250, 250, 250);
-    padding: 10px 15px 5px 15px;
     border-radius: 5px;
     width: 500px;
   }
 
   .map-container {
     height: calc(100vh - 4rem);
+  }
+
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    background-color: white;
+    border-radius: 5px;
   }
 }
