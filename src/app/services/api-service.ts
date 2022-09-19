@@ -1,0 +1,38 @@
+import {Injectable} from "@angular/core";
+import {HttpClient} from "@angular/common/http";
+import {Construction, CreateConstruction} from "../../models/Construction";
+import {environment} from "../../environments/environment";
+import {Observable} from "rxjs";
+
+@Injectable({
+  providedIn: "root"
+})
+export class ApiService {
+
+  constructor(private _httpClient: HttpClient, ) {}
+
+  get baseUrl() {
+    return environment ? environment.serviceUrl : ''
+  }
+
+  public getConstructions(): Observable<Construction[]> {
+    return this._httpClient.get<Construction[]>(`${this.baseUrl}/constructions`);
+  }
+
+  public postConstruction(construction: CreateConstruction) {
+    let formData = new FormData();
+    formData.append('structure', construction.structure)
+    formData.append('city', construction.city)
+    formData.append('latitude', construction.latitude.toString())
+    formData.append('longitude', construction.longitude.toString())
+    formData.append('architecture', construction.architecture)
+    formData.append('constructionYear', construction.constructionYear.toString())
+    formData.append('link', construction.link)
+    formData.append('fullName', construction.fullName)
+    formData.append('email', construction.email)
+    formData.append('phone', construction.phone)
+    formData.append('images', JSON.stringify(construction['images']));
+    return this._httpClient.post(`${this.baseUrl}/construction`, formData);
+  }
+
+}
