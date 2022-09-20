@@ -1,5 +1,5 @@
-<div *ngIf="apiLoaded$ | async">
-  <div class="map-container" #map>
+<div>
+  <div #map class="map-container">
     <div class="action-bar flex flex-row justify-between">
       <div class="filter">
         <mat-form-field appearance="outline" class="w-full">
@@ -14,22 +14,17 @@
         </mat-form-field>
       </div>
       <form class="search-field">
-        <mat-form-field class="w-full" appearance="outline">
-          <input type="text"
-                 placeholder="Suche nach Region, Bauwerk, Jahr, ..."
+        <mat-form-field appearance="outline" class="w-full">
+          <input [formControl]="myControl"
                  matInput
-                 [formControl]="myControl"
-                 [matAutocomplete]="auto">
-          <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-              {{option}}
-            </mat-option>
-          </mat-autocomplete>
-          <mat-icon fontSet="fa" fontIcon="fa-magnifying-glass" matPrefix></mat-icon>
+                 placeholder="Suche nach Region, Bauwerk, Jahr, ..."
+                 type="text">
+          <mat-icon fontIcon="fa-magnifying-glass" fontSet="fa" matPrefix></mat-icon>
         </mat-form-field>
       </form>
     </div>
-    <google-map [options]="googleMapsOptions"
-                [width]="'100vw'" [height]="map.offsetHeight"></google-map>
+
+    <google-map #googleMap [height]="map.offsetHeight"
+                [options]="googleMapsOptions" [width]="'100vw'"></google-map>
   </div>
 </div>

@@ -9,14 +9,16 @@ import {Observable} from "rxjs";
 })
 export class ApiService {
 
-  constructor(private _httpClient: HttpClient, ) {}
+  constructor(private _httpClient: HttpClient,) {
+  }
 
   get baseUrl() {
     return environment ? environment.serviceUrl : ''
   }
 
-  public getConstructions(): Observable<Construction[]> {
-    return this._httpClient.get<Construction[]>(`${this.baseUrl}/constructions`);
+  public getConstructions(searchtext?: string): Observable<Construction[]> {
+    const text = searchtext ? `/${searchtext}` : '';
+    return this._httpClient.get<Construction[]>(`${this.baseUrl}/constructions${text}`);
   }
 
   public postConstruction(construction: CreateConstruction) {
