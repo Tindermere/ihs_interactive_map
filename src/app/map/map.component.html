@@ -1,5 +1,5 @@
 <div>
-  <div #map class="map-container">
+  <div class="map-container">
     <div class="action-bar flex flex-row justify-between">
       <div class="filter">
         <mat-form-field appearance="outline" class="w-full">
@@ -23,8 +23,6 @@
         </mat-form-field>
       </form>
     </div>
-
-    <google-map #googleMap [height]="map.offsetHeight"
-                [options]="googleMapsOptions" [width]="'100vw'"></google-map>
+    <div #map class="map"></div>
   </div>
 </div>
