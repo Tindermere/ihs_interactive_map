@@ -24,6 +24,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
 
   categories: Category[] = [{value: 'Est', color: 'red'}];
   constructions$: Observable<Construction[]>;
+  construction$: Observable<Construction>;
   myControl = new FormControl('');
 
   filteredOptions: Observable<Construction[]>;
@@ -53,6 +54,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
         this.addMarker(locations)
       })
 
+    this.construction$?.subscribe(value => console.log(value));
 
     const mapProperties = {
       center: {lat: 47.0502, lng: 8.3093},
@@ -76,7 +78,8 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       });
 
       google.maps.event.addListener(marker, 'click', () => {
-        console.log(location);
+        console.log(location.id);
+        this.construction$ = this._apiService.getConstruction(location.id);
       })
 
       return marker;

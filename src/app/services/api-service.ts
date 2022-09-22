@@ -17,8 +17,12 @@ export class ApiService {
   }
 
   public getConstructions(searchtext?: string): Observable<Construction[]> {
-    const text = searchtext ? `/${searchtext}` : '';
+    const text = searchtext ? `?searchString=${searchtext}` : '';
     return this._httpClient.get<Construction[]>(`${this.baseUrl}/constructions${text}`);
+  }
+
+  public getConstruction(id: string): Observable<Construction> {
+    return this._httpClient.get<Construction>(`${this.baseUrl}/constructions/${id}`);
   }
 
   public postConstruction(construction: CreateConstruction) {
