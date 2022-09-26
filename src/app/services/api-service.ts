@@ -19,7 +19,6 @@ export class ApiService {
   public getConstructions(searchtext = '', category?: any): Observable<Construction[]> {
     let params = new HttpParams();
     params = params.append("searchString", searchtext);
-    console.log(category)
     if (category) {
       params = params.append("category", category);
     }

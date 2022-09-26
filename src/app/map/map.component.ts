@@ -6,6 +6,7 @@ import {ApiService} from "../services/api-service";
 import {Construction} from "../../models/Construction";
 import {MarkerClusterer} from "@googlemaps/markerclusterer";
 import {ConstructionColor} from "../../enums/ConstructionColor";
+import {Router} from "@angular/router";
 
 declare const google: any;
 
@@ -40,7 +41,9 @@ export class MapComponent implements OnInit, OnDestroy {
 
   private _unsubscribe$ = new Subject<void>();
 
-  constructor(private httpClient: HttpClient, private _apiService: ApiService) {
+  constructor(private _httpClient: HttpClient,
+              private _apiService: ApiService,
+              private _router: Router) {
   }
 
   ngOnDestroy() {
@@ -78,10 +81,10 @@ export class MapComponent implements OnInit, OnDestroy {
         animation: google.maps.Animation.DROP
       });
 
-      google.maps.event.addListener(marker, 'click', () => {
-        console.log(location.id);
-
-      })
+      google.maps.event.addListener(marker, 'click', () =>
+          this._router.navigateByUrl(`map/${location.id}`)
+        // this._apiService.getConstruction(location.id)
+      )
 
       return marker;
     });

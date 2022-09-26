@@ -1,15 +1,20 @@
-import { RouterModule, Routes } from '@angular/router';
-import { MapComponent } from './map/map.component';
-import { ListComponent } from './list/list.component';
-import { InformationComponent } from './information/information.component';
-import { CaptureBuildingComponent } from './capture-building/capture-building.component';
-import { ContactComponent } from './contact/contact.component';
-import { NgModule } from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {MapComponent} from './map/map.component';
+import {ListComponent} from './list/list.component';
+import {InformationComponent} from './information/information.component';
+import {CaptureBuildingComponent} from './capture-building/capture-building.component';
+import {ContactComponent} from './contact/contact.component';
+import {NgModule} from '@angular/core';
+import {DetailPageComponent} from "./detail-page/detail-page.component";
 
 const routes: Routes = [
   {
     path: 'map',
     component: MapComponent,
+  },
+  {
+    path: 'map:id',
+    component: DetailPageComponent
   },
   {
     path: 'list',
@@ -41,4 +46,5 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}
