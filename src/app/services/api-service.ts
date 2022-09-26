@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {Construction, CreateConstruction} from "../../models/Construction";
 import {environment} from "../../environments/environment";
 import {Observable} from "rxjs";
@@ -16,9 +16,17 @@ export class ApiService {
     return environment ? environment.serviceUrl : ''
   }
 
-  public getConstructions(searchtext?: string): Observable<Construction[]> {
-    const text = searchtext ? `?searchString=${searchtext}` : '';
-    return this._httpClient.get<Construction[]>(`${this.baseUrl}/constructions${text}`);
+  public getConstructions(searchtext = '', category?: any): Observable<Construction[]> {
+    let params = new HttpParams();
+    params = params.append("searchString", searchtext);
+    console.log(category)
+    if (category) {
+      params = params.append("category", category);
+    }
+
+    return this._httpClient.get<Construction[]>(`${this.baseUrl}/constructions`, {
+      params
+    });
   }
 
   public getConstruction(id: string): Observable<Construction> {

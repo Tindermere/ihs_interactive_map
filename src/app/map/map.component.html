@@ -3,25 +3,27 @@
     <div class="action-bar flex flex-row justify-between">
       <div class="filter">
         <mat-form-field appearance="outline" class="w-full">
-          <mat-select placeholder="Kategorien">
+          <mat-select [formControl]="categoryFilterControl" placeholder="Kategorien">
             <mat-option *ngFor="let category of categories" [value]="category.value">
-              <div class="flex flex-row justify-between">
+              <div class="flex flex-row items-center">
+                <div [ngStyle]="{'background-color': category.color}" class="category-color"></div>
                 <span>{{category.value}}</span>
-                <div class="category-color"></div>
               </div>
             </mat-option>
           </mat-select>
         </mat-form-field>
       </div>
-      <form class="search-field">
+      <div class="search-field">
         <mat-form-field appearance="outline" class="w-full">
-          <input [formControl]="myControl"
+          <input (keyup.enter)="onEnter()"
+                 [formControl]="searchControl"
                  matInput
                  placeholder="Suche nach Region, Bauwerk, Jahr, ..."
-                 type="text">
+                 type="text"
+          >
           <mat-icon fontIcon="fa-magnifying-glass" fontSet="fa" matPrefix></mat-icon>
         </mat-form-field>
-      </form>
+      </div>
     </div>
     <div #map class="map"></div>
   </div>
