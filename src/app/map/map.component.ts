@@ -23,10 +23,13 @@ export class MapComponent implements OnInit, OnDestroy {
   @ViewChild("map", {static: true}) mapElement: any;
   map: any;
 
-  categories: Category[] = [{value: 'Est', color: ConstructionColor.green}, {
-    value: 'crazy',
-    color: ConstructionColor.blue
-  }];
+  categories: Category[] = [
+    {value: 'Aktuell', color: ConstructionColor.white},
+    {value: 'Bauwerke', color: ConstructionColor.blue},
+    {value: 'Rote Liste', color: ConstructionColor.red},
+    {value: 'Ferien im Baudenkmal', color: ConstructionColor.yellow},
+    {value: 'Kategorie XY', color: ConstructionColor.green}
+  ];
   enterInSearch$ = new BehaviorSubject<any>(null);
   searchControl = new FormControl<string>('');
   categoryFilterControl = new FormControl<Category>({} as Category);
@@ -94,10 +97,9 @@ export class MapComponent implements OnInit, OnDestroy {
     this.categoryFilterControl.valueChanges
       .pipe(
         takeUntil(this._unsubscribe$),
-        switchMap(category => {
-          console.log(category);
-          return this._apiService.getConstructions(this.searchControl.value!, category)
-        })
+        switchMap(category =>
+          this._apiService.getConstructions(this.searchControl.value!, category)
+        )
       )
       .subscribe(constructions => {
         this._setMarkers(constructions)
@@ -111,7 +113,7 @@ export class MapComponent implements OnInit, OnDestroy {
         takeUntil(this._unsubscribe$),
         debounceTime(300),
         switchMap(([searchValue, _]) =>
-          this._apiService.getConstructions(searchValue!, this.categoryFilterControl.getRawValue()?.value)
+          this._apiService.getConstructions(searchValue!, this.categoryFilterControl.getRawValue())
         )).subscribe(constructions => {
       this._setMarkers(constructions);
     });

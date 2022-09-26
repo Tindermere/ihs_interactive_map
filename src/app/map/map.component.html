@@ -5,9 +5,9 @@
         <mat-form-field appearance="outline" class="w-full">
           <mat-select [formControl]="categoryFilterControl" placeholder="Kategorien">
             <mat-option *ngFor="let category of categories" [value]="category.value">
-              <div class="flex flex-row items-center">
-                <div [ngStyle]="{'background-color': category.color}" class="category-color"></div>
+              <div class="flex flex-row items-center justify-between">
                 <span>{{category.value}}</span>
+                <div [ngStyle]="{'background-color': category.color}" class="category-color"></div>
               </div>
             </mat-option>
           </mat-select>

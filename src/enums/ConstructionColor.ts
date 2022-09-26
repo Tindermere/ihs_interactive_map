@@ -1,7 +1,7 @@
 export enum ConstructionColor {
   white = 'white',
   blue = 'lightblue',
-  red = 'lightred',
+  red = 'indianred',
   yellow = 'lightyellow',
   green = 'lightgreen'
 }
