@@ -1,1 +1,39 @@
-<p>detail-page works!</p>
+<div class="detail-page-body">
+  <div class="flex flex-row justify-between">
+    <p class="font-bold">{{construction?.structure}}</p>
+    <a (click)="close()" class="cursor-pointer">Schliessen</a>
+  </div>
+  <div *ngIf="construction; else loading" class="flex flex-col mt-6">
+    <div class="flex flex-row">
+      <p class="label">Ort</p>
+      <p class="information">{{construction.city}}</p>
+    </div>
+    <div class="flex flex-row">
+      <p class="label">Koordinaten</p>
+      <p class="information">{{coordinates()}}</p>
+    </div>
+    <div class="flex flex-row">
+      <p class="label">Architektur</p>
+      <p *ngIf="construction.architecture; else empty" class="information">{{construction.architecture}}</p>
+    </div>
+    <div class="flex flex-row">
+      <p class="label">Baujahr</p>
+      <p *ngIf="construction.constructionYear; else empty" class="information">{{construction.constructionYear}}</p>
+    </div>
+    <div class="flex flex-row">
+      <p class="label">Beschrieb</p>
+      <p *ngIf="construction.structure; else empty" class="information">{{construction.description}}</p>
+    </div>
+    <div class="flex flex-row">
+      <p class="label">Link</p>
+      <p *ngIf="construction.link; else empty" class="information">{{construction.link}}</p>
+    </div>
+    <div class="image-wrapper">
+      <div *ngFor="let image of construction.images">
+        <img src="data:image/png;base64,{{image.image}}">
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #loading>Die Informationen werden geladen..</ng-template>
+<ng-template #empty>-</ng-template>

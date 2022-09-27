@@ -1,0 +1,57 @@
+:host {
+  @keyframes open {
+    from {
+      margin-right: -50vw;
+    }
+    to {
+      margin-right: 0;
+    }
+  }
+
+  .detail-page-body {
+    z-index: 99999;
+    width: 50vw;
+    height: calc(100vh - 4rem);
+    position: absolute;
+    top: 4rem;
+    right: 0;
+    background-color: white;
+    padding: 40px 40px 0px 40px;
+    animation-name: open;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in;
+  }
+
+  .information {
+    font-weight: 700;
+  }
+
+  .label {
+    width: 15rem;
+    min-width: 15rem;
+  }
+
+  .image-wrapper {
+    max-height: 40vh;
+    display: grid;
+    grid-template-columns: repeat(2, 250px);
+    grid-template-rows: repeat(3, 250px);
+    grid-gap: 15px;
+
+    @media screen and (max-width: 1200px) {
+      grid-template-columns: repeat(2, 200px);
+      grid-template-rows: repeat(3, 200px);
+    }
+
+    img {
+      height: 250px;
+      width: 250px;
+      object-fit: cover;
+
+      @media screen and (max-width: 1200px) {
+        height: 200px;
+        width: 200px;
+      }
+    }
+  }
+}

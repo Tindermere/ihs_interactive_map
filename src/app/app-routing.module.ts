@@ -11,10 +11,12 @@ const routes: Routes = [
   {
     path: 'map',
     component: MapComponent,
-  },
-  {
-    path: 'map:id',
-    component: DetailPageComponent
+    children: [
+      {
+        path: ':id',
+        component: DetailPageComponent
+      },
+    ]
   },
   {
     path: 'list',

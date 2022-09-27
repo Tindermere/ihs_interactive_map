@@ -15,6 +15,7 @@ export interface Construction {
   images: ContructionImage[];
   contactPerson: ContactPerson;
   contactPersonId: string;
+  description: string;
 }
 
 export enum ConstructionStatus {

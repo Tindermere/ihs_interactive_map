@@ -46,6 +46,7 @@ import {DetailPageComponent} from './detail-page/detail-page.component';
     MatInputModule,
     ReactiveFormsModule,
     MatIconModule,
+    
   ],
   providers: [MatIconRegistry],
   bootstrap: [AppComponent],

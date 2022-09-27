@@ -36,6 +36,8 @@ export class MapComponent implements OnInit, OnDestroy {
   categoryFilterControl = new FormControl<Category>({} as Category);
   markers: google.maps.Marker[] = [];
   markerCluster: MarkerClusterer;
+  detailOpened: boolean;
+  selectedId: string;
 
   filteredOptions: Observable<Construction[]>;
 
@@ -81,9 +83,10 @@ export class MapComponent implements OnInit, OnDestroy {
         animation: google.maps.Animation.DROP
       });
 
-      google.maps.event.addListener(marker, 'click', () =>
-          this._router.navigateByUrl(`map/${location.id}`)
-        // this._apiService.getConstruction(location.id)
+      google.maps.event.addListener(marker, 'click', () => {
+          this.detailOpened = true;
+          this.selectedId = location.id
+        }
       )
 
       return marker;
