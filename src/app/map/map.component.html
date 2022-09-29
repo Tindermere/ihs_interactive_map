@@ -27,7 +27,7 @@
     </div>
     <div #map class="map"></div>
     <div *ngIf="detailOpened">
-      <app-detail-page (closeEventEmitter)="detailOpened = false" [id]="selectedId"></app-detail-page>
+      <app-detail-page (closeEventEmitter)="detailOpened = false" [id$]="selectedId$"></app-detail-page>
     </div>
   </div>
 </div>

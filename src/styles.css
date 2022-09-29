@@ -10,6 +10,20 @@ body {
   overflow-x: hidden;
 }
 
+.info-text-wrapper {
+  margin-top: 5px;
+  margin-bottom: 3px;
+}
+
+.info-text {
+  border-bottom: 1px solid black;
+}
+
+.info-text:hover {
+  cursor: pointer;
+}
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

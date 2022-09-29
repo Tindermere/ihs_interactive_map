@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {ApiService} from "../services/api-service";
 import {Construction} from "../../models/Construction";
-import {Subject, takeUntil} from "rxjs";
+import {BehaviorSubject, Subject, takeUntil} from "rxjs";
 
 @Component({
   selector: 'app-detail-page',
@@ -9,7 +9,7 @@ import {Subject, takeUntil} from "rxjs";
   styleUrls: ['./detail-page.component.scss']
 })
 export class DetailPageComponent implements OnInit, OnDestroy {
-  @Input() id: string;
+  @Input() id$: BehaviorSubject<string>;
   @Output() closeEventEmitter: EventEmitter<any> = new EventEmitter<any>();
 
   construction: Construction;
@@ -19,9 +19,11 @@ export class DetailPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this._apiService.getConstruction(this.id)
-      .pipe(takeUntil(this._unsubscribe$))
-      .subscribe(construction => this.construction = construction);
+    this.id$.pipe(takeUntil(this._unsubscribe$)).subscribe(id => {
+      this._apiService.getConstruction(id)
+        .pipe(takeUntil(this._unsubscribe$))
+        .subscribe(construction => this.construction = construction);
+    })
   }
 
   ngOnDestroy() {

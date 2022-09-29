@@ -3,6 +3,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {Construction, CreateConstruction} from "../../models/Construction";
 import {environment} from "../../environments/environment";
 import {Observable} from "rxjs";
+import {Category} from "../map/map.component";
 
 @Injectable({
   providedIn: "root"
@@ -16,11 +17,12 @@ export class ApiService {
     return environment ? environment.serviceUrl : ''
   }
 
-  public getConstructions(searchtext = '', category?: any): Observable<Construction[]> {
+  public getConstructions(searchtext = '', category?: Category): Observable<Construction[]> {
     let params = new HttpParams();
     params = params.append("searchString", searchtext);
+
     if (category) {
-      params = params.append("category", category);
+      params = params.append("category", category.toString());
     }
 
     return this._httpClient.get<Construction[]>(`${this.baseUrl}/constructions`, {

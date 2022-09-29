@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
 
 declare const google: any;
 
-interface Category {
+export interface Category {
   value: string;
   color?: ConstructionColor;
 }
@@ -37,7 +37,7 @@ export class MapComponent implements OnInit, OnDestroy {
   markers: google.maps.Marker[] = [];
   markerCluster: MarkerClusterer;
   detailOpened: boolean;
-  selectedId: string;
+  selectedId$ = new BehaviorSubject<string>('');
 
   filteredOptions: Observable<Construction[]>;
 
@@ -83,9 +83,25 @@ export class MapComponent implements OnInit, OnDestroy {
         animation: google.maps.Animation.DROP
       });
 
+      const infoBox = new google.maps.InfoWindow({
+        maxWidth: 450,
+      })
+
       google.maps.event.addListener(marker, 'click', () => {
-          this.detailOpened = true;
-          this.selectedId = location.id
+          const div = document.createElement('div');
+          const locationDiv = document.createElement('div');
+
+          locationDiv.innerHTML = location.text + '<br>';
+          div.appendChild(locationDiv);
+
+          const infoText = document.createElement('div');
+          infoText.className = "info-text-wrapper"
+          infoText.innerHTML = "<a class='info-text'> Informationen </a>"
+          infoText.onclick = () => this.setDetailOpened(location.id);
+          div.appendChild(infoText);
+
+          infoBox.setContent(div);
+          infoBox.open(this.map, marker)
         }
       )
 
@@ -93,6 +109,11 @@ export class MapComponent implements OnInit, OnDestroy {
     });
     this.markers = markersTemp;
     this.markerCluster = new MarkerClusterer({map: this.map, markers: this.markers});
+  }
+
+  setDetailOpened(id: string) {
+    this.selectedId$.next(id);
+    this.detailOpened = true;
   }
 
   onEnter() {
@@ -119,7 +140,7 @@ export class MapComponent implements OnInit, OnDestroy {
         takeUntil(this._unsubscribe$),
         debounceTime(300),
         switchMap(([searchValue, _]) =>
-          this._apiService.getConstructions(searchValue!, this.categoryFilterControl.getRawValue())
+          this._apiService.getConstructions(searchValue!, this.categoryFilterControl.value)
         )).subscribe(constructions => {
       this._setMarkers(constructions);
     });
@@ -128,7 +149,12 @@ export class MapComponent implements OnInit, OnDestroy {
   private _setMarkers(constructions: Construction[]) {
     this._removeMarkers();
     const mappedConstructions = constructions.map(construction => {
-      return {lat: construction.latitude, lng: construction.longitude, id: construction.id}
+      return {
+        lat: construction.latitude,
+        lng: construction.longitude,
+        id: construction.id,
+        text: construction.structure
+      }
     });
     this.addMarker(mappedConstructions);
   }
