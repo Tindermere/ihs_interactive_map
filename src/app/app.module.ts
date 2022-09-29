@@ -23,6 +23,8 @@ import {DetailPageComponent} from './detail-page/detail-page.component';
 import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatSortModule} from "@angular/material/sort";
+import {MatButtonModule} from "@angular/material/button";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -51,7 +53,9 @@ import {MatSortModule} from "@angular/material/sort";
     MatIconModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatButtonModule,
+    MatProgressSpinnerModule
   ],
   providers: [MatIconRegistry],
   bootstrap: [AppComponent],

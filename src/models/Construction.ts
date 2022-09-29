@@ -16,6 +16,7 @@ export interface Construction {
   contactPerson: ContactPerson;
   contactPersonId: string;
   description: string;
+  category: string;
 }
 
 export enum ConstructionStatus {
@@ -24,6 +25,7 @@ export enum ConstructionStatus {
 }
 
 export interface CreateConstruction {
+  category: string;
   structure: string;
   city: string;
   latitude: number;
@@ -35,4 +37,5 @@ export interface CreateConstruction {
   fullName: string;
   email: string;
   phone: string;
+  description: string;
 }

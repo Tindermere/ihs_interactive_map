@@ -36,16 +36,19 @@ export class ApiService {
 
   public postConstruction(construction: CreateConstruction) {
     let formData = new FormData();
+    console.log(construction);
     formData.append('structure', construction.structure)
     formData.append('city', construction.city)
     formData.append('latitude', construction.latitude.toString())
     formData.append('longitude', construction.longitude.toString())
     formData.append('architecture', construction.architecture)
-    formData.append('constructionYear', construction.constructionYear.toString())
+    formData.append('constructionYear', construction.constructionYear?.toString())
     formData.append('link', construction.link)
     formData.append('fullName', construction.fullName)
     formData.append('email', construction.email)
     formData.append('phone', construction.phone)
+    formData.append('description', construction.description)
+    formData.append('category', construction.category)
     formData.append('images', JSON.stringify(construction['images']));
     return this._httpClient.post(`${this.baseUrl}/construction`, formData);
   }
