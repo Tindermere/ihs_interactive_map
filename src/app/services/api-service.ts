@@ -36,7 +36,6 @@ export class ApiService {
 
   public postConstruction(construction: CreateConstruction) {
     let formData = new FormData();
-    console.log(construction);
     formData.append('structure', construction.structure)
     formData.append('city', construction.city)
     formData.append('latitude', construction.latitude.toString())

@@ -50,7 +50,19 @@
       <mat-label>Beschrieb</mat-label>
       <textarea [cols]="4" formControlName="description" matInput placeholder="Objektbeschrieb..."></textarea>
     </mat-form-field>
-    <h1>BILDER</h1>
+    <div class="mb-4">
+      <div class=" flex flex-row flex-wrap mb-2 gap-3">
+        <img *ngFor='let preview of previews' [src]="preview" class="preview">
+      </div>
+      <div class="row">
+        <div class="col-8">
+          <label class="btn btn-default p-0">
+            <input (change)="selectFiles($event)" accept="image/*" multiple type="file"/>
+          </label>
+        </div>
+
+      </div>
+    </div>
     <p>Die Angaben werden vom Innerschweizer Heimatschutz geprüft. Geben Sie bitte für Rückfragen
       Ihre Kontaktdaten an (werden nicht veröffentlicht).</p>
     <div class="flex flex-row justify-between gap-6">

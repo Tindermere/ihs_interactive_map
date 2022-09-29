@@ -14,6 +14,8 @@ export class CaptureBuildingComponent implements OnInit {
   sendingForm: boolean;
   hasError: boolean;
   categories = categories;
+  selectedFiles?: FileList;
+  previews: string[] = [];
 
   constructor(private _form: FormBuilder, private _apiService: ApiService) {
     this.form = this._form.group({
@@ -37,13 +39,33 @@ export class CaptureBuildingComponent implements OnInit {
   }
 
   sendForm() {
-    console.log(this.form.value);
     this.sendingForm = true;
-    this._apiService.postConstruction(this.form.value).pipe(finalize(() => this.sendingForm = false)).pipe(catchError(error => {
-      this.hasError = true;
-      this.sendingForm = false;
-      return of(error)
-    })).subscribe();
+    this.form.get('images').setValue(this.previews);
+    this._apiService.postConstruction(this.form.value)
+      .pipe(finalize(() => this.sendingForm = false))
+      .pipe(catchError(error => {
+        this.hasError = true;
+        this.sendingForm = false;
+        return of(error)
+      })).subscribe();
+  }
+
+  selectFiles(event: any): void {
+    this.selectedFiles = event.target.files;
+
+    this.previews = [];
+    if (this.selectedFiles && this.selectedFiles[0]) {
+      const numberOfFiles = this.selectedFiles.length;
+      for (let i = 0; i < numberOfFiles; i++) {
+        const reader = new FileReader();
+
+        reader.onload = (e: any) => {
+          this.previews.push(e.target.result);
+        };
+
+        reader.readAsDataURL(this.selectedFiles[i]);
+      }
+    }
   }
 
 }

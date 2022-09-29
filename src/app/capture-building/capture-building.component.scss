@@ -11,6 +11,12 @@
     animation-duration: 0.5s;
     animation-timing-function: ease-in;
   }
+
+  .preview {
+    max-width: 180px;
+    object-fit: cover;
+  }
+
 }
 
 .category-color {
