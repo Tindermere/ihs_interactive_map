@@ -21,7 +21,7 @@ export class CaptureBuildingComponent implements OnInit {
       structure: ['', [Validators.required]],
       images: [],
       architecture: ['', [Validators.required]],
-      constructionYear: null,
+      constructionYear: [null, [Validators.required]],
       longitude: [null, [Validators.required]],
       latitude: [null, [Validators.required]],
       description: '',
@@ -43,7 +43,7 @@ export class CaptureBuildingComponent implements OnInit {
       this.hasError = true;
       this.sendingForm = false;
       return of(error)
-    }));
+    })).subscribe();
   }
 
 }

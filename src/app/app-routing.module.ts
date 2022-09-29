@@ -3,6 +3,7 @@ import {MapComponent} from './map/map.component';
 import {ListComponent} from './list/list.component';
 import {CaptureBuildingComponent} from './capture-building/capture-building.component';
 import {NgModule} from '@angular/core';
+import {ConfirmComponent} from "./confirm/confirm.component";
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'capture-building',
     component: CaptureBuildingComponent,
+  },
+  {
+    path: 'Confirmation',
+    component: ConfirmComponent
   },
   {
     path: '**',

@@ -50,7 +50,11 @@ export class ApiService {
     formData.append('description', construction.description)
     formData.append('category', construction.category)
     formData.append('images', JSON.stringify(construction['images']));
-    return this._httpClient.post(`${this.baseUrl}/construction`, formData);
+    return this._httpClient.post(`${this.baseUrl}/constructions`, formData);
+  }
+
+  public confirmConstruction(confirmationToken: string) {
+    return this._httpClient.post(`${this.baseUrl}/constructions/confirm`, {confirmationToken})
   }
 
 }

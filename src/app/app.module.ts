@@ -25,6 +25,7 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatSortModule} from "@angular/material/sort";
 import {MatButtonModule} from "@angular/material/button";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { ConfirmComponent } from './confirm/confirm.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     CaptureBuildingComponent,
     ContactComponent,
     DetailPageComponent,
+    ConfirmComponent,
   ],
   imports: [
     BrowserModule,
