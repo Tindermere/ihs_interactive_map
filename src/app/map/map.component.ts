@@ -5,15 +5,10 @@ import {FormControl} from '@angular/forms';
 import {ApiService} from "../services/api-service";
 import {Construction} from "../../models/Construction";
 import {MarkerClusterer} from "@googlemaps/markerclusterer";
-import {ConstructionColor} from "../../enums/ConstructionColor";
 import {Router} from "@angular/router";
+import {categories, Category} from "../../models/Category";
 
 declare const google: any;
-
-export interface Category {
-  value: string;
-  color?: ConstructionColor;
-}
 
 @Component({
   selector: 'app-map',
@@ -24,13 +19,7 @@ export class MapComponent implements OnInit, OnDestroy {
   @ViewChild("map", {static: true}) mapElement: any;
   map: any;
 
-  categories: Category[] = [
-    {value: 'Aktuell', color: ConstructionColor.white},
-    {value: 'Bauwerke', color: ConstructionColor.blue},
-    {value: 'Rote Liste', color: ConstructionColor.red},
-    {value: 'Ferien im Baudenkmal', color: ConstructionColor.yellow},
-    {value: 'Kategorie XY', color: ConstructionColor.green}
-  ];
+  categories = categories;
   enterInSearch$ = new BehaviorSubject<any>(null);
   searchControl = new FormControl<string>('');
   categoryFilterControl = new FormControl<Category>({} as Category);

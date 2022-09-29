@@ -1,1 +1,67 @@
-<p>list works!</p>
+<div class="flex flex-row flex-nowrap">
+  <div class="sidenav border-r-2">
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-select [formControl]="categoryFilterControl" placeholder="Kategorien">
+        <mat-option *ngFor="let category of categories" [value]="category.value">
+          <div class="flex flex-row items-center justify-between">
+            <span>{{category.value}}</span>
+            <div [ngStyle]="{'background-color': category.color}" class="category-color"></div>
+          </div>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="w-full">
+      <input (keyup.enter)="onEnter()"
+             [formControl]="searchControl"
+             matInput
+             placeholder="Suche nach Region, Bauwerk, Jahr, ..."
+             type="text"
+      >
+      <mat-icon fontIcon="fa-magnifying-glass" fontSet="fa" matPrefix></mat-icon>
+    </mat-form-field>
+  </div>
+  <div class="list w-full h-full">
+    <div class="mat-elevation-z0">
+      <div class="table-container">
+        <table [dataSource]="dataSource" mat-table>
+          <!-- Bauwerk Column -->
+          <ng-container matColumnDef="structure">
+            <th *matHeaderCellDef mat-header-cell> Bauwerk</th>
+            <td *matCellDef="let element" mat-cell> {{element.structure}} </td>
+          </ng-container>
+
+          <!-- Ort Column -->
+          <ng-container matColumnDef="city">
+            <th *matHeaderCellDef mat-header-cell> Ort</th>
+            <td *matCellDef="let element" mat-cell> {{element.city}} </td>
+          </ng-container>
+
+          <!-- Baujahr Column -->
+          <ng-container matColumnDef="constructionYear">
+            <th *matHeaderCellDef mat-header-cell> Baujahr</th>
+            <td *matCellDef="let element" mat-cell> {{element.constructionYear}} </td>
+          </ng-container>
+
+          <!-- Architektur Column -->
+          <ng-container matColumnDef="architecture">
+            <th *matHeaderCellDef mat-header-cell> Architektur</th>
+            <td *matCellDef="let element" mat-cell> {{element.architecture}} </td>
+          </ng-container>
+
+          <!-- Kategorie Column -->
+          <ng-container matColumnDef="category">
+            <th *matHeaderCellDef mat-header-cell> Kategorie</th>
+            <td *matCellDef="let element" mat-cell> {{element.category}} </td>
+          </ng-container>
+
+          <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+          <tr (click)="setSelectedId(row)" *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+        </table>
+      </div>
+      <mat-paginator [pageSizeOptions]="[20, 30, 50]" showFirstLastButtons></mat-paginator>
+    </div>
+    <div *ngIf="detailOpened">
+      <app-detail-page (closeEventEmitter)="detailOpened = false" [id$]="selectedId$"></app-detail-page>
+    </div>
+  </div>
+</div>

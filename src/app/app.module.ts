@@ -20,6 +20,8 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule, MatIconRegistry} from '@angular/material/icon';
 import {DetailPageComponent} from './detail-page/detail-page.component';
+import {MatTableModule} from "@angular/material/table";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 @NgModule({
   declarations: [
@@ -46,7 +48,8 @@ import {DetailPageComponent} from './detail-page/detail-page.component';
     MatInputModule,
     ReactiveFormsModule,
     MatIconModule,
-    
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [MatIconRegistry],
   bootstrap: [AppComponent],

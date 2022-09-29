@@ -3,7 +3,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {Construction, CreateConstruction} from "../../models/Construction";
 import {environment} from "../../environments/environment";
 import {Observable} from "rxjs";
-import {Category} from "../map/map.component";
+import {Category} from "../../models/Category";
 
 @Injectable({
   providedIn: "root"
