@@ -67,5 +67,4 @@ export class CaptureBuildingComponent implements OnInit {
       }
     }
   }
-
 }
