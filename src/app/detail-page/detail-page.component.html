@@ -1,30 +1,30 @@
 <div class="detail-page-body border-l-2">
   <div class="flex flex-row justify-between">
-    <p class="font-bold">{{construction?.structure}}</p>
+    <h2 class="font-bold">{{construction?.structure}}</h2>
     <a (click)="close()" class="cursor-pointer">Schliessen</a>
   </div>
-  <div *ngIf="construction; else loading" class="flex flex-col mt-6">
-    <div class="flex flex-row">
+  <div *ngIf="construction; else loading" class="flex flex-col">
+    <div class="flex flex-row mt-4">
       <p class="label">Ort</p>
       <p class="information">{{construction.city}}</p>
     </div>
-    <div class="flex flex-row">
+    <div class="flex flex-row mt-4">
       <p class="label">Koordinaten</p>
       <p class="information">{{coordinates()}}</p>
     </div>
-    <div class="flex flex-row">
+    <div class="flex flex-row mt-4">
       <p class="label">Architektur</p>
       <p *ngIf="construction.architecture; else empty" class="information">{{construction.architecture}}</p>
     </div>
-    <div class="flex flex-row">
+    <div class="flex flex-row mt-4">
       <p class="label">Baujahr</p>
       <p *ngIf="construction.constructionYear; else empty" class="information">{{construction.constructionYear}}</p>
     </div>
-    <div class="flex flex-row">
+    <div class="flex flex-row mt-4">
       <p class="label">Beschrieb</p>
-      <p *ngIf="construction.structure; else empty" class="information">{{construction.description}}</p>
+      <p *ngIf="construction.description; else empty" class="information">{{construction.description}}</p>
     </div>
-    <div class="flex flex-row">
+    <div class="flex flex-row mt-4">
       <p class="label">Link</p>
       <p *ngIf="construction.link; else empty" class="information">{{construction.link}}</p>
     </div>

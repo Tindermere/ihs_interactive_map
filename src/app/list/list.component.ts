@@ -6,6 +6,7 @@ import {ApiService} from "../services/api-service";
 import {MatTableDataSource} from "@angular/material/table";
 import {Construction} from "../../models/Construction";
 import {MatPaginator} from "@angular/material/paginator";
+import {MatSort} from "@angular/material/sort";
 
 @Component({
   selector: 'app-list',
@@ -14,6 +15,7 @@ import {MatPaginator} from "@angular/material/paginator";
 })
 export class ListComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   displayedColumns: string[] = ['structure', 'city', 'constructionYear', 'architecture', 'category'];
   categoryFilterControl = new FormControl<Category>({} as Category);
@@ -33,6 +35,7 @@ export class ListComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   ngOnInit(): void {

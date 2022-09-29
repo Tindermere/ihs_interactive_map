@@ -18,6 +18,10 @@
     height: calc(100vh - 56px - 4rem);
     overflow: auto;
   }
+
+  .search-field:before {
+    content: material-icons-content('search');
+  }
 }
 
 .category-color {

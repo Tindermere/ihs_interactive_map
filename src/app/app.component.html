@@ -5,10 +5,11 @@
     <a routerLink="/list">Listenansicht</a>
     <a routerLink="/info">Informationen</a>
     <a routerLink="/capture-building">Bauwerk erfassen</a>
-    <a routerLink="/contact">Kontakt</a>
+    <a (click)="contactOpened = true" class="cursor-pointer">Kontakt</a>
   </div>
 </div>
 <div>
+  <app-contact (closeEventEmitter)="contactOpened = false" *ngIf="contactOpened"></app-contact>
   <router-outlet></router-outlet>
 </div>
 
