@@ -3,12 +3,13 @@
   <div class="space-x-8 p-6">
     <a routerLink="/map">Kartenansicht</a>
     <a routerLink="/list">Listenansicht</a>
-    <a routerLink="/info">Informationen</a>
+    <a (click)="informationOpened = true">Informationen</a>
     <a routerLink="/capture-building">Bauwerk erfassen</a>
     <a (click)="contactOpened = true" class="cursor-pointer">Kontakt</a>
   </div>
 </div>
 <div>
+  <app-information (closeEventEmitter)="informationOpened = false" *ngIf="informationOpened"></app-information>
   <app-contact (closeEventEmitter)="contactOpened = false" *ngIf="contactOpened"></app-contact>
   <router-outlet></router-outlet>
 </div>

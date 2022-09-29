@@ -1,0 +1,24 @@
+:host {
+  @keyframes open {
+    from {
+      margin-right: -50vw;
+    }
+    to {
+      margin-right: 0;
+    }
+  }
+
+  .information-body {
+    z-index: 99999;
+    width: 50vw;
+    height: calc(100vh - 4rem);
+    position: absolute;
+    top: 4rem;
+    right: 0;
+    background-color: white;
+    padding: 40px 40px 0px 40px;
+    animation-name: open;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in;
+  }
+}

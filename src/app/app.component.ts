@@ -9,4 +9,5 @@ export class AppComponent {
   title = 'ihs_interactive_map';
 
   contactOpened: boolean;
+  informationOpened: boolean;
 }
