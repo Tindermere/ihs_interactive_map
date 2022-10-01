@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  serviceUrl: ''
+  serviceUrl: 'https://web-ihs-backend.azurewebsites.net'
 };

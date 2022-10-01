@@ -16,7 +16,7 @@ export class ConfirmComponent implements OnInit {
 
   ngOnInit(): void {
     this._route.queryParams.subscribe(params => {
-      this._apiService.confirmConstruction(params['token']).pipe(take(1)).subscribe(() => this.succeed = true)
+      this._apiService.confirmConstruction(params['Token']).pipe(take(1)).subscribe(() => this.succeed = true)
     })
   }
 
