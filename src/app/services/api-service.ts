@@ -48,7 +48,11 @@ export class ApiService {
     formData.append('phone', construction.phone)
     formData.append('description', construction.description)
     formData.append('category', construction.category)
-    formData.append('images', JSON.stringify(construction['images']));
+
+    for (let i = 0; i < construction.images.length; i++) {
+      formData.append('images', construction.images.item(i))
+    }
+
     return this._httpClient.post(`${this.baseUrl}/constructions`, formData);
   }
 

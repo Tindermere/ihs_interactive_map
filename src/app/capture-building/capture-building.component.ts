@@ -40,7 +40,6 @@ export class CaptureBuildingComponent implements OnInit {
 
   sendForm() {
     this.sendingForm = true;
-    this.form.get('images').setValue(this.previews);
     this._apiService.postConstruction(this.form.value)
       .pipe(finalize(() => this.sendingForm = false))
       .pipe(catchError(error => {
@@ -52,6 +51,7 @@ export class CaptureBuildingComponent implements OnInit {
 
   selectFiles(event: any): void {
     this.selectedFiles = event.target.files;
+    this.form.get('images').setValue(this.selectedFiles);
 
     this.previews = [];
     if (this.selectedFiles && this.selectedFiles[0]) {

@@ -33,7 +33,7 @@ export interface CreateConstruction {
   architecture: string;
   constructionYear: number;
   link: string;
-  images: ContructionImage[];
+  images: FileList;
   fullName: string;
   email: string;
   phone: string;
