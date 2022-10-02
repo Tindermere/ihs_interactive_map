@@ -76,7 +76,7 @@ export class ListComponent implements OnInit, OnDestroy, AfterViewInit {
         takeUntil(this._unsubscribe$),
         debounceTime(300),
         switchMap(([searchValue, _]) =>
-          this._apiService.getConstructions(searchValue!, this.categoryFilterControl.value)
+          this._apiService.getConstructions(searchValue!, Object.keys(this.categoryFilterControl.value).length > 0 ? this.categoryFilterControl.value : '')
         )).subscribe(constructions => {
       this.dataSource.data = constructions
     });

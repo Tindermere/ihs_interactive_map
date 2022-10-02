@@ -17,10 +17,11 @@ export class ApiService {
     return environment ? environment.serviceUrl : ''
   }
 
-  public getConstructions(searchtext = '', category?: Category): Observable<Construction[]> {
+  public getConstructions(searchtext = '', category?: string | Category): Observable<Construction[]> {
     let params = new HttpParams();
-    params = params.append("searchString", searchtext);
-
+    if (searchtext) {
+      params = params.append("searchString", searchtext);
+    }
     if (category) {
       params = params.append("category", category.toString());
     }

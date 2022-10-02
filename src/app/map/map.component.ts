@@ -113,8 +113,8 @@ export class MapComponent implements OnInit, OnDestroy {
     this.categoryFilterControl.valueChanges
       .pipe(
         takeUntil(this._unsubscribe$),
-        switchMap(category =>
-          this._apiService.getConstructions(this.searchControl.value!, category)
+        switchMap(value =>
+          this._apiService.getConstructions(this.searchControl.value!, value)
         )
       )
       .subscribe(constructions => {
@@ -129,7 +129,7 @@ export class MapComponent implements OnInit, OnDestroy {
         takeUntil(this._unsubscribe$),
         debounceTime(300),
         switchMap(([searchValue, _]) =>
-          this._apiService.getConstructions(searchValue!, this.categoryFilterControl.value)
+          this._apiService.getConstructions(searchValue!, Object.keys(this.categoryFilterControl.value).length > 0 ? this.categoryFilterControl.value : '')
         )).subscribe(constructions => {
       this._setMarkers(constructions);
     });
