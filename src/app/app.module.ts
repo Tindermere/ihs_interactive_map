@@ -25,7 +25,8 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatSortModule} from "@angular/material/sort";
 import {MatButtonModule} from "@angular/material/button";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import { ConfirmComponent } from './confirm/confirm.component';
+import {ConfirmComponent} from './confirm/confirm.component';
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { ConfirmComponent } from './confirm/confirm.component';
     MatPaginatorModule,
     MatSortModule,
     MatButtonModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSnackBarModule
   ],
   providers: [MatIconRegistry],
   bootstrap: [AppComponent],

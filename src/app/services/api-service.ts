@@ -49,8 +49,10 @@ export class ApiService {
     formData.append('description', construction.description)
     formData.append('category', construction.category)
 
-    for (let i = 0; i < construction.images.length; i++) {
-      formData.append('images', construction.images.item(i))
+    if (construction.images) {
+      for (let i = 0; i < construction.images.length; i++) {
+        formData.append('images', construction.images.item(i))
+      }
     }
 
     return this._httpClient.post(`${this.baseUrl}/constructions`, formData);

@@ -26,9 +26,10 @@
     </div>
     <div class="flex flex-row mt-4">
       <p class="label">Link</p>
-      <p *ngIf="construction.link; else empty" class="information">{{construction.link}}</p>
+      <a *ngIf="construction.link; else empty" [href]="construction.link"
+         class="text-blue-500 underline">{{construction.link}}</a>
     </div>
-    <div class="image-wrapper">
+    <div class="image-wrapper flex flex-row flex-wrap">
       <div *ngFor="let image of construction.images">
         <img src="data:image/png;base64,{{image.image}}">
       </div>

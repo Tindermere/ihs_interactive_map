@@ -1,7 +1,6 @@
 <div class="flex flex-row justify-between h-16 overflow-x-hidden border-b-2">
-  <div class="p-6 font-bold">IHS - Interaktive MAP</div>
+  <div class="p-6 font-bold cursor-pointer" routerLink="/map">IHS - Interaktive MAP</div>
   <div class="space-x-8 p-6">
-    <a routerLink="/Confirmation">CONFIRM</a>
     <a routerLink="/map">Kartenansicht</a>
     <a routerLink="/list">Listenansicht</a>
     <a (click)="informationOpened = true; contactOpened = false" class="cursor-pointer">Informationen</a>

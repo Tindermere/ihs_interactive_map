@@ -13,10 +13,18 @@
       <mat-form-field class="w-full">
         <mat-label>Latitude</mat-label>
         <input formControlName="latitude" matInput placeholder="47.0502"/>
+        <mat-error *ngIf="latitudeFormControl.hasError('pattern')">Koordinatendaten für Latitude erfolgen in diesem
+          Pattern:
+          '47.3093'
+        </mat-error>
       </mat-form-field>
       <mat-form-field class="w-full">
         <mat-label>Longitude</mat-label>
         <input formControlName="longitude" matInput placeholder="8.3093"/>
+        <mat-error *ngIf="longitudeFormControl.hasError('pattern')">Koordinatendaten für Longitude erfolgen in diesem
+          Pattern:
+          '8.3093'
+        </mat-error>
       </mat-form-field>
     </div>
     <div class="flex flex-row justify-between gap-6">
@@ -84,8 +92,7 @@
     </div>
   </form>
   <button (click)="sendForm()" [disabled]="form.invalid" class="w-full" color="primary" mat-raised-button>
-    <span *ngIf="!sendingForm">Angaben
-      hochladen</span>
+    <span *ngIf="!sendingForm">Angaben hochladen</span>
     <div *ngIf="sendingForm" class="justify-center flex m-2">
       <mat-spinner [diameter]="22"></mat-spinner>
     </div>
