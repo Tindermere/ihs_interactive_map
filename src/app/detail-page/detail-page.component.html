@@ -22,7 +22,7 @@
     </div>
     <div class="flex flex-row mt-4">
       <p class="label">Beschrieb</p>
-      <p *ngIf="construction.description; else empty" class="information">{{construction.description}}</p>
+      <pre *ngIf="construction.description; else empty" class="information">{{construction.description}}</pre>
     </div>
     <div class="flex flex-row mt-4">
       <p class="label">Link</p>

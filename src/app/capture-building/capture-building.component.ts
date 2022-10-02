@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ApiService} from "../services/api-service";
-import {catchError, of} from "rxjs";
 import {categories} from "../../models/Category";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
@@ -24,12 +23,12 @@ export class CaptureBuildingComponent implements OnInit {
       structure: ['', [Validators.required]],
       images: [],
       architecture: ['', [Validators.required]],
-      constructionYear: [null, [Validators.required]],
+      constructionYear: [null, [Validators.required, Validators.pattern('^[0-9]*$')]],
       longitude: [null, [Validators.required, Validators.pattern("^(\\+|-)?(?:180(?:(?:\\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\\.[0-9]{1,6})?))$"),]],
       latitude: [null, [Validators.required, Validators.pattern("^(\\+|-)?(?:90(?:(?:\\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\\.[0-9]{1,6})?))$"),]],
       description: '',
       phone: '',
-      email: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
       link: '',
       fullName: '',
       category: ['', [Validators.required]]
@@ -44,22 +43,30 @@ export class CaptureBuildingComponent implements OnInit {
     return this.form.get('latitude');
   }
 
+  get emailFormControl() {
+    return this.form.get('email');
+  }
+
+  get constructionYearFormControl() {
+    return this.form.get('constructionYear');
+  }
+
   ngOnInit(): void {
   }
 
   sendForm() {
     this.sendingForm = true;
     this._apiService.postConstruction(this.form.value)
-      .pipe(catchError(error => {
+      .subscribe(() => {
+        this.sendingForm = false;
+        this._snackBar.open('Die Angaben werden vom Innerschweizer Heimatschutz geprüft und nach der Validierung hochgeladen', 'Schliessen')
+        this.form.reset();
+        this.previews = [];
+      }, error => {
         this.hasError = true;
         this.sendingForm = false;
-        this._snackBar.open(`Fehler: ${error}`, 'Schliessen')
-        return of(error)
-      })).subscribe(() => {
-      this.sendingForm = false;
-      this._snackBar.open('Die Angaben werden vom Innerschweizer Heimatschutz geprüft und nach der Validierung hochgeladen', 'Schliessen')
-      this.form.reset();
-    });
+        this._snackBar.open(`Fehler: ${JSON.stringify(error)}`, 'Schliessen')
+      });
   }
 
   selectFiles(event: any): void {

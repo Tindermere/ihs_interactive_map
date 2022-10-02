@@ -47,6 +47,8 @@
       <mat-form-field class="w-full">
         <mat-label>Baujahr</mat-label>
         <input formControlName="constructionYear" matInput placeholder="z.B. 1959"/>
+        <mat-error *ngIf="constructionYearFormControl.hasError('pattern')">Geben Sie eine Jahrzahl an
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field class="w-full">
@@ -83,6 +85,8 @@
       <mat-form-field class="w-full">
         <mat-label>E-Mail</mat-label>
         <input formControlName="email" matInput placeholder="maxbill@bluewin.ch"/>
+        <mat-error *ngIf="emailFormControl.hasError('email')">Geben Sie eine gültige E-Mail Adresse an
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field class="w-full">
