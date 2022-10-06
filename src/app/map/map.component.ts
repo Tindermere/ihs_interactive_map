@@ -52,8 +52,8 @@ export class MapComponent implements OnInit, OnDestroy {
       })
 
     const mapProperties = {
-      center: {lat: 47.0502, lng: 8.3093},
-      zoom: 8,
+      center: {lat: 46.9705, lng: 8.4657},
+      zoom: 11,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     this.map = new google.maps.Map(
@@ -69,7 +69,8 @@ export class MapComponent implements OnInit, OnDestroy {
         // label: labels[i % labels.length],
         map: this.map,
         clickable: true,
-        animation: google.maps.Animation.DROP
+        animation: google.maps.Animation.DROP,
+        icon: this.getIconMarker(location.category)
       });
 
       const infoBox = new google.maps.InfoWindow({
@@ -142,7 +143,8 @@ export class MapComponent implements OnInit, OnDestroy {
         lat: construction.latitude,
         lng: construction.longitude,
         id: construction.id,
-        text: construction.structure
+        text: construction.structure,
+        category: construction.category
       }
     });
     this.addMarker(mappedConstructions);
@@ -156,5 +158,22 @@ export class MapComponent implements OnInit, OnDestroy {
       this.markers[i].setMap(null)
     }
     this.markers = [];
+  }
+
+  private getIconMarker(category: string): string {
+    switch (category) {
+      case 'Aktuell':
+        return 'http://maps.google.com/mapfiles/ms/icons/purple-dot.png';
+      case 'Bauwerke':
+        return 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';
+      case 'Rote Liste':
+        return 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
+      case 'Ferien im Baudenkmal':
+        return 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png';
+      case 'Kategorie XY':
+        return 'http://maps.google.com/mapfiles/ms/icons/green-dot.png';
+      default:
+        return 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+    }
   }
 }

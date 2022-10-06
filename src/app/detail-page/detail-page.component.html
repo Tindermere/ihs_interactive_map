@@ -31,7 +31,7 @@
          target="_blank">{{construction.link}}</a>
     </div>
     <div class="image-wrapper flex flex-row flex-wrap">
-      <div *ngFor="let image of construction.images">
+      <div *ngFor="let image of construction.images" class="mr-4">
         <img src="data:image/png;base64,{{image.image}}">
       </div>
     </div>
