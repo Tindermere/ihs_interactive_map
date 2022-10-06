@@ -12,6 +12,7 @@
     z-index: 99999;
     width: 50vw;
     height: calc(100vh - 4rem);
+    max-height: calc(100vh - 4rem);
     position: absolute;
     top: 4rem;
     right: 0;
@@ -20,6 +21,8 @@
     animation-name: open;
     animation-duration: 0.5s;
     animation-timing-function: ease-in;
+    overflow: auto;
+    overflow-x: hidden;
   }
 
   .information {
