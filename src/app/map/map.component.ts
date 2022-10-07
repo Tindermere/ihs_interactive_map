@@ -66,7 +66,6 @@ export class MapComponent implements OnInit, OnDestroy {
     const markersTemp = locations.map((location, i) => {
       const marker = new google.maps.Marker({
         position: location,
-        // label: labels[i % labels.length],
         map: this.map,
         clickable: true,
         animation: google.maps.Animation.DROP,
@@ -122,6 +121,7 @@ export class MapComponent implements OnInit, OnDestroy {
         this._setMarkers(constructions)
       });
 
+    // noinspection JSDeprecatedSymbols
     combineLatest(
       this.searchControl.valueChanges,
       this.enterInSearch$
