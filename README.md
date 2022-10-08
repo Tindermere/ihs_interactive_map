@@ -16,8 +16,6 @@ The application will automatically reload if you change any of the source files.
 
 > Login to Microsoft Azure https://portal.azure.com/#home -
 >
-> Subscribe to th
->
 > Use the account that is subscribed to the subscription: Azure subscription 1 (4bea1044-aad6-4ac0-aaed-0d21f08fc2a0)
 
 ### Build Prod
